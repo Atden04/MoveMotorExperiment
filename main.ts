@@ -1,5 +1,5 @@
 input.onButtonPressed(Button.A, function () {
-    Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 80)
+    Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 20)
 })
 input.onButtonPressed(Button.B, function () {
     Kitronik_Move_Motor.stop()
@@ -10,14 +10,13 @@ moveMotorZIP.setZipLedColor(1, Kitronik_Move_Motor.colors(Kitronik_Move_Motor.Zi
 moveMotorZIP.setZipLedColor(2, Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green))
 moveMotorZIP.setZipLedColor(3, Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Yellow))
 Kitronik_Move_Motor.setUltrasonicUnits(Kitronik_Move_Motor.Units.Inches)
-music.play(music.stringPlayable("C5 A B G A F G E ", 262), music.PlaybackMode.LoopingInBackground)
 basic.forever(function () {
     moveMotorZIP.rotate(1)
     moveMotorZIP.show()
     basic.pause(100)
 })
 basic.forever(function () {
-    if (Kitronik_Move_Motor.measure() <= 5) {
+    if (Kitronik_Move_Motor.measure() <= 2) {
         basic.showLeds(`
             . # . # .
             . # . # .
