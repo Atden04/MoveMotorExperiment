@@ -1,4 +1,5 @@
 input.onButtonPressed(Button.A, function () {
+    Kitronik_Move_Motor.motorBalance(Kitronik_Move_Motor.SpinDirections.Right, 1)
     Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 20)
 })
 input.onButtonPressed(Button.B, function () {
@@ -16,7 +17,7 @@ basic.forever(function () {
     basic.pause(100)
 })
 basic.forever(function () {
-    if (Kitronik_Move_Motor.measure() <= 2) {
+    if (Kitronik_Move_Motor.measure() <= 10) {
         basic.showLeds(`
             . # . # .
             . # . # .

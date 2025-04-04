@@ -1,5 +1,6 @@
 def on_button_pressed_a():
-    Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.FORWARD, 80)
+    Kitronik_Move_Motor.motor_balance(Kitronik_Move_Motor.SpinDirections.RIGHT, 1)
+    Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.FORWARD, 20)
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
 def on_button_pressed_b():
@@ -16,8 +17,6 @@ moveMotorZIP.set_zip_led_color(2,
 moveMotorZIP.set_zip_led_color(3,
     Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.YELLOW))
 Kitronik_Move_Motor.set_ultrasonic_units(Kitronik_Move_Motor.Units.INCHES)
-music.play(music.string_playable("C5 A B G A F G E ", 262),
-    music.PlaybackMode.LOOPING_IN_BACKGROUND)
 
 def on_forever():
     moveMotorZIP.rotate(1)
@@ -26,7 +25,7 @@ def on_forever():
 basic.forever(on_forever)
 
 def on_forever2():
-    if Kitronik_Move_Motor.measure() <= 5:
+    if Kitronik_Move_Motor.measure() <= 10:
         basic.show_leds("""
             . # . # .
             . # . # .
