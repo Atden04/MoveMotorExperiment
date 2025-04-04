@@ -1,5 +1,5 @@
 input.onButtonPressed(Button.A, function () {
-    Kitronik_Move_Motor.motorBalance(Kitronik_Move_Motor.SpinDirections.Right, 1)
+    Kitronik_Move_Motor.motorBalance(Kitronik_Move_Motor.SpinDirections.Right, 1.5)
     Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 20)
 })
 input.onButtonPressed(Button.B, function () {
