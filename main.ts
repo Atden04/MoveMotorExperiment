@@ -2,7 +2,7 @@ input.onButtonPressed(Button.A, function () {
 	
 })
 let biasValue = 0
-let distanceToWall = 2
+let distanceToWall = 3
 let speed = 20
 let moveMotorZIP = Kitronik_Move_Motor.createMoveMotorZIPLED(4)
 moveMotorZIP.setZipLedColor(0, Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red))
@@ -17,4 +17,9 @@ basic.forever(function () {
 })
 basic.forever(function () {
     basic.showNumber(Kitronik_Move_Motor.measure())
+    if (Kitronik_Move_Motor.measure() > distanceToWall) {
+        Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, speed)
+    } else {
+        Kitronik_Move_Motor.stop()
+    }
 })
