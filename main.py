@@ -2,37 +2,37 @@ def on_button_pressed_a():
     pass
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
-biasValue = 0
+def on_button_pressed_ab():
+    Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.FORWARD, speed)
+input.on_button_pressed(Button.AB, on_button_pressed_ab)
+
+def on_button_pressed_b():
+    Kitronik_Move_Motor.stop()
+    basic.show_number(Kitronik_Move_Motor.measure())
+input.on_button_pressed(Button.B, on_button_pressed_b)
+
+def move_to_wall():
+    if Kitronik_Move_Motor.measure() > distanceToWall:
+        Kitronik_Move_Motor.motor_on(Kitronik_Move_Motor.Motors.MOTOR_LEFT,
+            Kitronik_Move_Motor.MotorDirection.FORWARD,
+            speed)
+        Kitronik_Move_Motor.motor_on(Kitronik_Move_Motor.Motors.MOTOR_RIGHT,
+            Kitronik_Move_Motor.MotorDirection.FORWARD,
+            speed)
+    else:
+        Kitronik_Move_Motor.stop()
+speed = 0
+distanceToWall = 0
+biasValue = 2
 Kitronik_Move_Motor.motor_balance(Kitronik_Move_Motor.SpinDirections.RIGHT, biasValue)
-biasValue = 4
-distanceToWall = 8
+distanceToWall = 5
 speed = 20
-moveMotorZIP = Kitronik_Move_Motor.create_move_motor_zipled(4)
-moveMotorZIP.set_zip_led_color(0,
-    Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.RED))
-moveMotorZIP.set_zip_led_color(1,
-    Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.BLUE))
-moveMotorZIP.set_zip_led_color(2,
-    Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.GREEN))
-moveMotorZIP.set_zip_led_color(3,
-    Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.YELLOW))
 Kitronik_Move_Motor.set_ultrasonic_units(Kitronik_Move_Motor.Units.CENTIMETERS)
 
 def on_forever():
-    moveMotorZIP.rotate(1)
-    moveMotorZIP.show()
-    basic.pause(100)
+    move_to_wall()
+    basic.pause(500)
+    Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.LEFT, 50)
+    basic.pause(500)
+    Kitronik_Move_Motor.stop()
 basic.forever(on_forever)
-
-def on_forever2():
-    if Kitronik_Move_Motor.measure() > distanceToWall:
-        Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.FORWARD, speed)
-    elif Kitronik_Move_Motor.measure() < distanceToWall:
-        Kitronik_Move_Motor.stop()
-        basic.pause(500)
-        Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.REVERSE, 50)
-        basic.pause(1000)
-        Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.LEFT, 50)
-        basic.pause(500)
-        Kitronik_Move_Motor.stop()
-basic.forever(on_forever2)
