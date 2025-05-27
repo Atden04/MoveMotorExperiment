@@ -10,6 +10,16 @@ function traverse_maze () {
     move_to_wall()
     turn_right_90()
     move_to_wall()
+    turn_right_90()
+    move_to_wall()
+    turn_left_90()
+    move_to_wall()
+    turn_right_90()
+    move_to_wall()
+    turn_left_90()
+    move_to_wall()
+    turn_left_90()
+    move_to_wall()
 }
 input.onButtonPressed(Button.A, function () {
 	
